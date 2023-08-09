@@ -1,3 +1,20 @@
-1: Answer to question 1...
-2: Answer to question 2...
-3: Answer to question 3...
+1: Our operating hours are [Operating Hours]
+2: You can contact our customer service by calling 08064643875, emailing us at transcop.inco@outlook.com, or using our website's live chat feature
+3: Yes, we can assist with online booking for transportation services. Our customer service representatives can guide you through the process or you can directly book through our website or mobile app
+4: We offer various loyalty programs and discounts for frequent customers. Please reach out to our customer service for more information on eligibility and benefits
+5: To make changes to your existing booking, kindly contact our customer service. They will assist you in modifying your reservation based on availability and our policies
+6: Our cancellation and refund policy varies depending on the type of booking and the notice period. Please reach out to our customer service for specific details regarding your booking
+7: We provide a range of transportation modes including [List of Modes]. Our fleet consists of various vehicles to cater to different needs and preferences
+8: For detailed information about our fleet, including vehicle types, sizes, and features, please contact our customer service. They will provide you with the necessary details
+9: Yes, some of our vehicles are equipped with wheelchair accessibility. Please specify your needs during the booking process, or contact customer service for further assistance
+10: Yes, we offer airport pick-up and drop-off services. You can book this service through our website or by contacting our customer service
+11: Our lost and found policy aims to assist customers in retrieving their belongings. Please contact our customer service for assistance regarding any lost items
+12: The advance booking period depends on the type of service and availability. We recommend booking transportation services as early as possible to secure your preferred schedule
+13: We offer vehicle tracking services for certain bookings. Please contact our customer service to check if this service is available for your specific reservation
+14: Yes, we provide transportation services for large groups or events. Contact our customer service or visit our website to discuss your requirements and make arrangements
+15: We highly value feedback and encourage you to provide it. You can share your feedback or file a complaint by contacting our customer service or via our website's feedback form
+16: Yes, we can assist with special requests such as child seats or pet-friendly transportation. Kindly inform our customer service at the time of booking or contact them to discuss your specific requirements
+17: Our policy regarding delays or cancellations due to unforeseen circumstances can vary. Please refer to our terms and conditions, or contact our customer service for details related to your specific booking
+18: Generally, there are restrictions on the amount and type of luggage allowed, primarily for safety reasons. Please contact our customer service for specific guidelines based on your transportation needs
+19: While we cannot guarantee specific drivers, you can make a request when booking, and we will do our best to accommodate your preferences depending on availability
+20: There may be additional charges for extra stops during the journey, depending on the type of service and distance. Please contact our customer service for more information regarding your specific booking
