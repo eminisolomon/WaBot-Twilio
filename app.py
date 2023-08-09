@@ -4,7 +4,6 @@ from twilio.rest import Client
 import os
 from dotenv import load_dotenv
 import openai
-from mongo_util import init_mongo, update_user_data, get_user_data
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'MMGHTY'
@@ -58,13 +57,6 @@ def generate_gpt3_response(user_input):
     except openai.error.OpenAIError:
         return "Sorry, I couldn't generate a response at the moment."
 
-# Initialize MongoDB connection
-user_collection = init_mongo()
-
-@app.route('/')
-def index():
-    return "Flask app is running!"
-
 # Main route for handling incoming messages
 @app.route('/bot', methods=['POST'])
 def bot():
@@ -73,43 +65,29 @@ def bot():
 
     response = MessagingResponse()
 
-    # Retrieve user state and name from MongoDB
-    user_state, user_name = get_user_data(user_collection, phone_number)
-
-    if user_state == 'initial':
-        if incoming_msg.lower() in ["hello", "hi"]:
-            user_state = 'waiting_for_name'
-            update_user_data(user_collection, phone_number, user_state, '')
-            response.message("Hello! Can I know your name?")
-        else:
-            response.message("Welcome! You can start by saying Hello or Hi.")
-    elif user_state == 'waiting_for_name':
-            update_user_data(user_collection, phone_number, 'regular', incoming_msg)
-            all_questions = "\n".join(questions)
-            personalized_greeting = greeting.replace("(name)", incoming_msg)
-            response.message(f"{personalized_greeting}\n{all_questions}")
+    # Handle known greetings
+    if incoming_msg == "Hello" or incoming_msg == "Hi":
+        all_questions = "\n".join(questions)
+        response.message(f"{greeting}\n{all_questions}")
+    # Handle known question numbers
+    elif incoming_msg in [str(i + 1) for i in range(len(questions))]:
+        question_index = int(incoming_msg) - 1
+        response.message(answers.get(str(question_index + 1), "Sorry, I couldn't find an answer for that question."))
+    # Handle known answers
+    elif incoming_msg in answers:
+        response.message(answers[incoming_msg])
+        sendMessage(answers[incoming_msg], phone_number)
+    # Handle "thank you" messages
+    elif "thank you" in incoming_msg.lower():
+        response.message("You're welcome! If you have more questions, feel free to ask.")
+    # Handle unknown inputs using GPT-3
     else:
-    # Handle regular interactions
-        if incoming_msg == "Hello" or incoming_msg == "Hi":
-            all_questions = "\n".join(questions)
-        
-            personalized_greeting = greeting.replace("(name)", user_name)
-            response.message(f"{personalized_greeting}\n{all_questions}")
-        elif incoming_msg in [str(i + 1) for i in range(len(questions))]:
-            question_index = int(incoming_msg) - 1
-            response.message(answers.get(str(question_index + 1), "Sorry, I couldn't find an answer for that question."))
-        elif incoming_msg in answers:
-            response.message(answers[incoming_msg])
-            sendMessage(answers[incoming_msg], phone_number)
-        elif "thank you" in incoming_msg.lower():
-            response.message("You're welcome! If you have more questions, feel free to ask.")
+        gpt3_response = generate_gpt3_response(incoming_msg)
+        if gpt3_response == "Sorry, I couldn't generate a response at the moment.":
+            response.message(gpt3_response)
         else:
-            gpt3_response = generate_gpt3_response(incoming_msg)
-            if gpt3_response == "Sorry, I couldn't generate a response at the moment.":
-                response.message(gpt3_response)
-            else:
-                response.message(gpt3_response)
-                sendMessage(gpt3_response, phone_number)
+            response.message(gpt3_response)
+            sendMessage(gpt3_response, phone_number)
 
     return str(response)
 
