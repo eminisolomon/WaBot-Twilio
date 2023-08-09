@@ -1,0 +1,22 @@
+gretting: Hello (name), Here are a few things I can assist you with today?.
+
+1. What are your operating hours?
+2. How can I contact your customer service?
+3. Can you assist with online booking for transportation services?
+4. Are there any discounts available for frequent customers?
+5. How do I make changes to my existing booking?
+6. Can I cancel my booking and get a refund?
+7. What are the available modes of transportation you provide?
+8. Can you provide information about your fleet of vehicles?
+9. Are your vehicles equipped with wheelchair accessibility?
+10. Do you offer airport pick-up and drop-off services?
+11. What is your policy on lost and found items?
+12. How far in advance should I book transportation services?
+13. Can I track the location of my booked vehicle?
+14. Do you provide transportation services for large groups or events?
+15. How can I provide feedback or file a complaint?
+16. Can you assist with special requests like child seats or pet-friendly transportation?
+17. What is your policy on delays or cancellations due to unforeseen circumstances?
+18. Are there any restrictions on the amount or type of luggage allowed?
+19. Can I request a specific driver or vehicle for my booking?
+20. Are there any additional charges for extra stops during the journey?
