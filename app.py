@@ -61,6 +61,10 @@ def generate_gpt3_response(user_input):
 # Initialize MongoDB connection
 user_collection = init_mongo()
 
+@app.route('/')
+def index():
+    return "Flask app is running!"
+
 # Main route for handling incoming messages
 @app.route('/bot', methods=['POST'])
 def bot():
