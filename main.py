@@ -86,37 +86,42 @@ def bot():
         personalized_greeting = greeting.replace("(name)", incoming_msg)
         response.message(f"{personalized_greeting}\n{all_questions}")
     else:
-
-        if incoming_msg == "Hello" or incoming_msg == "Hi":
-            all_questions = "\n".join(questions)
-
-            personalized_greeting = greeting.replace("(name)", user_name)
-            response.message(f"{personalized_greeting}\n{all_questions}")
-        elif incoming_msg in [str(i + 1) for i in range(len(questions))]:
-            question_index = int(incoming_msg) - 1
-            response.message(answers.get(
-                str(question_index + 1), "Sorry, I couldn't find an answer for that question."))
-
-        elif incoming_msg in answers:
-            response.message(answers[incoming_msg])
-            sendMessage(answers[incoming_msg], phone_number)
-
-        elif any(keyword in incoming_msg.lower() for keyword in ["thank you", "thanks", "am grateful", "i am grateful"]):
-            response.message(
-                "You're welcome! If you have more questions, feel free to ask.")
-
-        else:
-            gpt3_response = generate_gpt3_response(incoming_msg)
-            if gpt3_response == "Sorry, I couldn't generate a response at the moment.":
-                response.message(gpt3_response)
-            else:
-                response.message(gpt3_response)
-                sendMessage(gpt3_response, phone_number)
-
         if incoming_msg.lower() == "deactivate":
             user_collection.delete_one({'phone_number': phone_number})
             response.message(
                 "You have been deactivated. Thank you for using the service!")
+        else:
+            if user_name:
+                if incoming_msg == "Hello" or incoming_msg == "Hi":
+                    all_questions = "\n".join(questions)
+                    personalized_greeting = greeting.replace(
+                        "(name)", user_name)
+                    response.message(
+                        f"{personalized_greeting}\n{all_questions}")
+
+                elif incoming_msg in [str(i + 1) for i in range(len(questions))]:
+                    question_index = int(incoming_msg) - 1
+                    response.message(answers.get(
+                        str(question_index + 1), "Sorry, I couldn't find an answer for that question."))
+
+                elif incoming_msg in answers:
+                    response.message(answers[incoming_msg])
+                    sendMessage(answers[incoming_msg], phone_number)
+
+                elif any(keyword in incoming_msg.lower() for keyword in ["thank you", "thanks", "am grateful", "i am grateful"]):
+                    response.message(
+                        "You're welcome! If you have more questions, feel free to ask.")
+
+                else:
+                    gpt3_response = generate_gpt3_response(incoming_msg)
+                    if gpt3_response == "Sorry, I couldn't generate a response at the moment.":
+                        response.message(gpt3_response)
+                    else:
+                        response.message(gpt3_response)
+                        sendMessage(gpt3_response, phone_number)
+            else:
+                response.message(
+                    "You are not registered. Please start by saying Hello or Hi to register.")
 
     return str(response)
 
