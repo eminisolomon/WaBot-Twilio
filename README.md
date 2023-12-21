@@ -21,7 +21,7 @@ This is a simple WhatsApp chatbot built using Flask that responds to user messag
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/Bettcom/Bettcom-gmail.com.git
+   git clone https://github.com/eminisolomon/wabot-twilio.git
    cd whatsapp-chatbot
 
    ```
